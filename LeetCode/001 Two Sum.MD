@@ -1,4 +1,4 @@
-public int[] twoSum(int[] nums, int target) {
+	public int[] twoSum(int[] nums, int target) {
 		int[]sum = new int[2];
 		
 		for (int i = 0; i < nums.length; i++) {
@@ -14,4 +14,4 @@ public int[] twoSum(int[] nums, int target) {
 		
 		return sum;
 	}
-}
+	
