@@ -19,6 +19,6 @@
 				l++;
 			}
 		}
-		swap(arr, more, r);
+		swap(arr, more, r);//省一个参数
 		return new int[] { less + 1, more };//首位定位
 	}
