@@ -13,7 +13,7 @@
 			while(tc<=dc) {
 				System.out.print(matrix[tr][tc++]+" ");
 			}
-		}else if(tc==dc) {                              //第二种特殊情况，在同一列
+		}else if(tc==dc) {                              //第二种特殊情况，在同一列。
 			while(tr<=dr) {
 				System.out.print(matrix[tc][tr++]+" ");
 			}
