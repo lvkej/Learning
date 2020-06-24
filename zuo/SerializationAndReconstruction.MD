@@ -8,7 +8,7 @@
 		}
 	}
 
-	public static String serialByPre(Node head) {
+	public static String serialByPre(Node head) { //先序遍历递归
 		if(head==null) {
 			return "#!";
 		}
