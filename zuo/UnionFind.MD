@@ -24,7 +24,7 @@
 		public Node findHead1(Node node) {
 			Node father = fatherMap.get(node);
 			if(father!=node) {
-				father = fatherMap.get(father);
+				father = findHead1(father);
 			}
 			fatherMap.put(node,father);					//优化，扁平化，node上面的所有节点都单独指向father
 			return father;
