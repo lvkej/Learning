@@ -1,0 +1,33 @@
+    public class KMP_ShortestHaveTwice {
+	public static String answer(String str) {
+		if (str == null || str.length() == 0) {
+			return "";
+		}
+		char[] chas = str.toCharArray();
+		if (chas.length == 1) {
+			return str + str;
+		}
+		if (chas.length == 2) {
+			return chas[0] == chas[1] ? (str + String.valueOf(chas[0])) : (str + str);
+		}
+		int endNext = endNextLength(chas);
+		return str + str.substring(endNext);
+	}
+
+	public static int endNextLength(char[] chas) {
+		int[] next = new int[chas.length + 1];
+		next[0] = -1;
+		next[1] = 0;
+		int pos = 2;
+		int cn = 0;
+		while (pos < next.length) {
+			if (chas[pos - 1] == chas[cn]) {
+				next[pos++] = ++cn;
+			} else if (cn > 0) {
+				cn = next[cn];
+			} else {
+				next[pos++] = 0;
+			}
+		}
+		return next[next.length - 1];
+	}
