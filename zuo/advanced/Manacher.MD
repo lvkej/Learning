@@ -3,7 +3,7 @@
 		char[] res = new char[str.length() * 2 + 1];
 		int index = 0;
 		for (int i = 0; i != res.length; i++) {
-			res[i] = (i & 1) == 0 ? '#' : charArr[index++];
+			res[i] = (i & 1) == 0 ? '#' : charArr[index++];//按位与运算，奇数返回1
 		}
 		return res;
 	}
