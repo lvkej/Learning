@@ -28,28 +28,43 @@
 				}
 			}
 		}
-
-		public static void heapify(int[] arr, int index, int heapSize) {
-			int left = index * 2 + 1;
-			int right = index * 2 + 2;
-			int largest = index;
-			while (left < heapSize) {
-				if (arr[left] > arr[index]) {
-					largest = left;
-				}
-				if (right < heapSize && arr[right] > arr[largest]) {
-					largest = right;
-				}
-				if (largest != index) {
-					swap(arr, largest, index);
-				} else {
-					break;
-				}
+		
+			public static void heapiffy(int[]arr, int index, int size) {
+		int left = index*2+1;
+		while(left<size) {
+			int largest=left+1<size&&arr[left+1]>arr[left]?left+1:left;//先比较两个儿子哪个
+			largest = arr[largest]>arr[index]?largest:index;			//在比较较大的儿子和父结点哪个大
+			if(largest!=index) {									//若不一样则swap
+				swap(arr,index,largest);
 				index = largest;
-				left = index * 2 + 1;
-				right = index * 2 + 2;
+				left=index*2+1;
+			}else {
+				break;
 			}
-		}
+			}
+	//		int left = index*2+1;
+	//		int right = left+1;
+	//		int largest = index;
+	//			while(left<size) {
+	//				if(arr[left]>arr[largest]) {
+	//					largest = left;
+	//				}
+	//				if(right<size&&arr[right]>arr[largest]) {
+	//					largest = right;
+	//				}
+	//				if(largest!=index) {
+	//					swap(arr,largest,index);
+	//					index=largest;
+	//					left = index*2+1;
+	//					right = left+1;
+	//				}else {
+	//					break;
+	//				}
+	//			}
+		
+	}
+
+		
 
 		// O(N)
 		public static int[] getMinKNumsByBFPRT(int[] arr, int k) {
