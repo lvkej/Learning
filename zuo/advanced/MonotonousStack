@@ -1,0 +1,63 @@
+    public static class pair{			//建栈中存的类，有数值和次数两个参数
+		public int value;
+		public int times;
+		
+		public pair(int value) {
+			this.value = value;
+			this.times = 1;
+		}
+	}
+	
+	public static int communication(int[ ]arr) {
+		if(arr==null||arr.length<2) {
+			return 0;
+		}
+		
+		int size = arr.length;
+		int maxindex = 0;		//先找到最大的下标
+		for (int i = 0; i < arr.length; i++) {
+			maxindex = arr[maxindex]<arr[i]?i:maxindex;
+		}
+		
+		int value = arr[maxindex];
+		int index = next(size,maxindex);		//调用函数，求得maxindex下一个坐标
+		int res = 0;
+		
+		Stack<pair> s = new Stack<pair>();		//建立最大单调栈
+		s.push(new pair(arr[maxindex]));		//栈底加入最大值；
+		
+		for (; index!=maxindex; index=next(size,index)) {	//index循环，直至index回到maxindex
+			while(!s.isEmpty()&&arr[index]>s.peek().value) {	//单调栈的经典循环条件
+				int times = s.pop().times;
+				res+= getinternalsum(times)+2*times;		//内部对数+外部对数
+			}
+			if(!s.isEmpty()&&arr[index]==s.peek().value) {	//若相等，times++
+				s.peek().times++;
+			}else {
+				s.push(new pair(arr[index]));							//不等，push新的pair
+			}
+		}
+		
+		while(!s.isEmpty()) {//循环结束，清栈
+			int times = s.pop().times;
+			res+=getinternalsum(times);
+			if(!s.isEmpty()) {		//要考虑栈底数的个数
+				res+=times;
+				if(s.size()>1) {
+					res+=times;
+				}else {			//若只有1个最大元素，则只有一对。
+					res+=s.peek().times>1?times:0;
+				}
+			}
+		}
+		
+		return res;
+	}
+	
+	public static int next(int maxsize,int i) {
+		return i==maxsize-1?0:i+1;
+	}
+	
+	public static int getinternalsum(int n) {
+		return n*(n-1)/2;		//内部对数C(2,K)
+	}
