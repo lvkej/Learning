@@ -1,4 +1,4 @@
-    public static int maxLength1(int[] arr, int k) {//从头开始加，map中加入前i个数和，和sum-aim比较
+	public static int maxLength1(int[] arr, int k) {//从头开始加，map中加入前i个数和，和sum-aim比较
 		if(arr==null||arr.length ==0) {
 			return 0;
 		}
@@ -17,3 +17,4 @@
 		}
 		return len;
 	}
+	//若改成求奇数和偶数个数相同的最长数组，则把奇数设为1，偶数设为-1，求何为0的最长子数组。
