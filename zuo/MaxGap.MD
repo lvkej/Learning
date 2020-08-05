@@ -12,7 +12,7 @@
 		if (min == max) {
 			return 0;
 		}
-		boolean[] hasNum = new boolean[len + 1];           //建立三个数组：是否有内容，最大值，最小值
+		boolean[] hasNum = new boolean[len + 1];           //建立三个数组：是否有内容，最大值，最小值，确保有一个空桶，
 		int[] maxs = new int[len + 1];                          //n个数建立n+1个桶
 		int[] mins = new int[len + 1];
 		int bid = 0;
