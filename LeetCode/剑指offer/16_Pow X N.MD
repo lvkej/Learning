@@ -28,6 +28,6 @@
             n = -n;
             x = 1/x;
         }
-        return (n%2 == 0) ? pow(x*x, n/2) : x*pow(x*x, n/2);      //递归
+        return (n%2 == 0) ? pow(x*x, n/2) : x*pow(x*x, n/2);      //递归。
     }
     } 
