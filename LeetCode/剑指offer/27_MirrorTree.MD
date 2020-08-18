@@ -15,6 +15,8 @@
 		}
 		
 		swap(root);
+		mirrorTree(root.left);
+		mirrorTree(root.right);
 		
 		return root;
     }
@@ -27,7 +29,6 @@
 		node.left=node.right;
 		node.right = tmp;
 		
-		swap(node.left);
-		swap(node.right);
+		
 	}
 }
