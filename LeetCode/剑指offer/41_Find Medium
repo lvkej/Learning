@@ -1,0 +1,22 @@
+  Queue<Integer> minheap;
+	Queue<Integer> maxheap;
+	public MedianFinder() {
+		minheap = new PriorityQueue<Integer>();
+		maxheap = new PriorityQueue<Integer>((x1,x2)->x2-x1);
+    }
+    
+	public void addNum(int num) {
+        if(minheap.size() == maxheap.size()) {
+        	minheap.add(num);
+        	maxheap.add(minheap.poll());							//判断奇偶性，保证两个堆轮流加入
+        } else {
+        	maxheap.add(num);
+            minheap.add(maxheap.poll());
+        }
+    }
+
+    
+    public double findMedian() {
+    	
+    	return maxheap.size()==minheap.size() ? minheap.peek()+(maxheap.peek()-minheap.peek())/2.0 : maxheap.peek()*1.0;
+    }
