@@ -1,0 +1,14 @@
+    public int majorityElement(int[] nums) {
+
+        int major=0,sum=0,index=0;
+
+        for (index = 0; index <nums.length ; index++) {
+            if(sum==0){
+                major=index;
+            }
+            sum+= nums[index]==nums[major] ? 1 : -1;
+            
+        }
+        return nums[major];
+
+    }
