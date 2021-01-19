@@ -8,36 +8,32 @@
 		}
 	}
 	
-	public static TreeNode buildtree (int[] preorder, int[] inorder) {
-		if(preorder==null||preorder.length==0) {
-			return null;
-		}
-		int lenth = inorder.length;
-		HashMap<Integer, Integer> index = new HashMap<Integer, Integer>();
-		for (int i = 0; i < inorder.length; i++) {
-			index.put(inorder[i], i);
-		}
-		return build(preorder,0,inorder,0,lenth-1,index);
-		
-	}
+	HashMap<Integer,Integer> map = new HashMap<>();
 
-	public static  TreeNode build(int[]preorder,int prestart, int[] inorder, int instart, int inend, HashMap<Integer, Integer> index) {
-		if(instart>inend) {
-			return null;
-		}
-		
-		int rootval = preorder[prestart];
-		TreeNode root = new TreeNode(rootval);
-		
-		int rootindex = index.get(rootval);
-		int leftlenth = rootindex-instart;
-		int rightlenth = inend - rootindex;
-		
-		TreeNode left = build(preorder,prestart+1,inorder,instart,rootindex-1,index);
-		TreeNode right = build(preorder,prestart+leftlenth+1,inorder,rootindex+1,inend,index);
-		root.left = left;
-		root.right = right;
-		
-		return root;
-	}
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if(preorder==null||preorder.length==0) {
+            return null;
+        }
+
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i],i);
+        }
+
+        return build(0,preorder.length-1,preorder,0);
+    }
+
+    public TreeNode build(int start,int end,int[] preorder,int index) {
+        if(start>end){
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[start]);
+        int rootindex = map.get(preorder[start]);
+        int leftlength = rootindex-index;
+
+        TreeNode left = build(start+1,start+leftlength,preorder,index);
+        TreeNode right = build(start+leftlength+1,end,preorder,index+leftlength+1);
+        root.left=left;
+        root.right=right;
+        return root;
+    } 
 	  
