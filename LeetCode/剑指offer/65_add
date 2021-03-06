@@ -1,0 +1,9 @@
+    public int add(int a, int b) {
+        int c=0;
+        while(b!=0){
+            c=(a&b)<<1;     //c是进位
+            a^=b;           //a^b
+            b=c;
+        }
+        return a;
+    }
