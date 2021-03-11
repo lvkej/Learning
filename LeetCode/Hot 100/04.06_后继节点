@@ -1,0 +1,24 @@
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        TreeNode res = null;
+        TreeNode node = root;
+    
+        if(p.right!=null){                  //若p有右节点，则后继节点是右节点的最左子节点
+            res = p.right;
+            while(res.left!=null){
+                res=res.left;
+            }
+            return res;
+        }
+
+
+        while(p!=node){                       //若没有右节点，则为p所在子树的最近左孩子的父节点
+            if(p.val<node.val){
+                res=node;
+                node=node.left; 
+            }else{                            // 这种情况不可能是res，因此不用res=node;
+                node=node.right;
+            }
+        }
+
+        return res;
+    }
