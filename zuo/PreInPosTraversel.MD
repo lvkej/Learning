@@ -103,3 +103,30 @@
 		}
 		System.out.println();
 	}
+	
+	//层序遍历
+	public List<List<Integer>> levelOrder(TreeNode root) {        
+        List<List<Integer>> res = new ArrayList<>();
+        if(root==null){
+            return res;
+        }
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.addLast(root);
+        while (!deque.isEmpty()) {
+            int size = deque.size();
+            List<Integer> list = new ArrayList<>();
+            while (size>0){
+                TreeNode node = deque.pollFirst();
+                list.add(node.val);
+                if(node.left!=null){
+                    deque.addLast(node.left);
+                }
+                if(node.right!=null){
+                    deque.addLast(node.right);
+                }
+                size--;
+            }
+            res.add(list);
+        }
+        return res;
+    }
